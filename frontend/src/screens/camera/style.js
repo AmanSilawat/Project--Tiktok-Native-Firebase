@@ -2,12 +2,15 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 30
+        marginTop: 22,
+        backgroundColor: 'black',
+        alignItems: 'center',
+
     },
     camera: {
         flex: 1,
-        backgroundColor: 'black',
         aspectRatio: 9 / 16,
+        backgroundColor: 'black',
     },
     bottomBarContainer: {
         alignItems: 'center',

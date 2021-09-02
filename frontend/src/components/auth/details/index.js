@@ -4,12 +4,12 @@ import { Feather } from '@expo/vector-icons';
 import styles from './style';
 import { useDispatch } from 'react-redux';
 import { login, register } from '../../../redux/actions/auth';
+import firebase from 'firebase';
 
 
 export default function AuthDetails({ authPage, setDetailsPage }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    console.log('authPage :>> ', authPage);
 
     const dispatch = useDispatch()
     const handleLogin = () => {

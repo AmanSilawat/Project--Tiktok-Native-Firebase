@@ -4,6 +4,7 @@ import { USER_STATE_CHANGE } from './../constants'
 
 export const userAuthStateListener = () => dispatch => {
     firebase.auth().onAuthStateChanged((user) => {
+        console.log('onAuthStateChanged :>> ', user);
         if (user) {
             dispatch(getCurrentUserData())
         } else {
@@ -13,12 +14,10 @@ export const userAuthStateListener = () => dispatch => {
 }
 
 export const getCurrentUserData = () => dispatch => {
-    console.log('object :>> ', 'Login');
     firebase.firestore()
         .collection('user')
         .doc(firebase.auth().currentUser.uid)
         .onSnapshot((res) => {
-            console.log('res :>> ', res);
             if (res.exists) {
                 return dispatch({
                     type: USER_STATE_CHANGE,
@@ -30,7 +29,6 @@ export const getCurrentUserData = () => dispatch => {
 }
 
 export const login = (email, password) => dispatch => new Promise((resolve, reject) => {
-    console.log('login :>> ');
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
             resolve()
@@ -40,9 +38,15 @@ export const login = (email, password) => dispatch => new Promise((resolve, reje
 })
 
 export const register = (email, password) => dispatch => new Promise((resolve, reject) => {
-    console.log('register :>> ');
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
+            // when you will not use the firebase functions then use this.
+            firebase
+                .firestore()
+                .collection('user')
+                .doc(firebase.auth().currentUser.uid)
+                .set({ email });
+
             resolve()
         }).catch((error) => {
             reject(error)

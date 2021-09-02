@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userAuthStateListener } from '../../redux/actions';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AuthScreen from './../../screens/auth'
+
+import AuthScreen from './../../screens/auth';
 import HomeScreen from './../home';
-// import SavePostScreen from '../../screens/savePost';
+import SavePostScreen from './../../screens/savePost';
 
 const Stack = createStackNavigator()
 
@@ -17,7 +18,6 @@ export default function Route() {
 
     useEffect(() => {
         dispatch(userAuthStateListener());
-        console.log('currentUserObj :>> ', currentUserObj);
     }, [])
 
     if (!currentUserObj.loaded) {
@@ -34,7 +34,7 @@ export default function Route() {
                     : (
                         <>
                             <Stack.Screen name="home" component={HomeScreen} options={{ headerShown: false }} />
-                            {/* <Stack.Screen name="savePost" component={SavePostScreen} options={{ headerShown: false }} /> */}
+                            <Stack.Screen name="savePost" component={SavePostScreen} options={{ headerShown: false }} />
                         </>
                     )
                 }

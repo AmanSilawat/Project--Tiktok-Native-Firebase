@@ -73,7 +73,9 @@ export default function CameraScreen() {
             aspect: [16, 9],
             quality: 1
         })
+
         console.log('result >>', result)
+
         if (!result.cancelled) {
             navigation.navigate('savePost', { source: result.uri })
         }
