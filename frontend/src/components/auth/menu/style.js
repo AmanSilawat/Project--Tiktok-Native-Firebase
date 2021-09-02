@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     headerText: {
-        fontWeight: 'bold',
+        fontWeight: "600",
         fontSize: 25,
         marginBottom: 25,
         color: 'darkslategray',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         borderColor: 'lightgray'
     },
     bottomButtonText: {
-        fontWeight: 'bold',
+        fontWeight: "600",
         color: 'red'
     }
 })
